@@ -1,0 +1,116 @@
+/* Styles.css */
+.load-More {
+  color: #ffffff;
+  display: none;
+  font-size: 18px;
+  background-color: #118bee;
+  transition: filter 0.3s ease; 
+  cursor: pointer;
+  border-radius: 20px;
+}
+
+.load-More:hover {
+  filter: brightness(1.2); 
+}
+
+.container {
+  height: 25vh; 
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+/* Contenedor para centrar el formulario en la parte superior */
+.form-container {
+    width: 100%; 
+    display: flex;
+    justify-content: center; 
+    align-items: flex-start; 
+    background-color: #000000;
+    padding-top: 20px; 
+  }
+  
+  /* Estilo del formulario */
+  .search-form {
+    
+    max-width: 400px; 
+    padding: 20px;
+    background-color: #ffffff; 
+    border-radius: 10px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1); 
+  }
+  
+  /* Estilo para el botón de búsqueda */
+  .search-form button {
+    background-color: #005ea6; 
+    color: #ffffff;
+    border: none;
+    padding: 10px 20px;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+  }
+  
+  .search-form button:hover {
+    background-color: #003c7f; 
+  }
+
+  :root {
+    --timing-function: cubic-bezier(0.4, 0, 0.2, 1);
+    --animation-duration: 250ms;
+  }
+  
+  .gallery {
+    display: grid;
+    margin-top: 25px;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    
+    grid-gap: 90px;
+    justify-content: center;
+    margin-left: auto;
+    margin-right: auto;
+    list-style-type: none;
+  }
+  
+  .gallery__item {
+    position: relative;
+    box-shadow: 0px 1px 3px 0px rgba(0, 0, 0, 0.2),
+      0px 1px 1px 0px rgba(0, 0, 0, 0.14), 0px 2px 1px -1px rgba(0, 0, 0, 0.12);
+  }
+  
+  .gallery__image:hover {
+    transform: scale(1.03);
+  }
+  
+  .gallery__image {
+    height: 100%;
+    width: 100%;
+    object-fit: cover;
+    transition: transform var(--animation-duration) var(--timing-function);
+    cursor: zoom-in;
+  }
+  .image-row {
+    display: block;
+    text-decoration: none;
+      height: 100%;
+      width: auto;
+      object-fit: cover; 
+    
+  }
+
+  .image-container {
+    display: block;
+    text-decoration: none;
+      height: 100%;
+      width: auto;
+      object-fit: cover; 
+    
+  }
+  .image-info {
+    font-size: small;
+    display: flex;
+    gap: 10px;
+    cursor: zoom-in;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); 
+  }
+  
