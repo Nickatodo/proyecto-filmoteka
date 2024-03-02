@@ -1,3 +1,6 @@
+const BASE_URL = 'https://api.themoviedb.org/3';
+const API_KEY = '31105a6b8ebd34e8f5577c23e6678fa8'; 
+
 'use strict';
 
 const searchingBox = document.querySelector('.searching-box');
@@ -10,15 +13,15 @@ const loadBtn = document.querySelector('.load-more');
 const lightbox = () => new SimpleLightbox('.gallery a', {});
 let perPage = 40;
 let page = 0;
-let name = searchQuery.value;
+let query = searchQuery.value;
 
 loadBtn.style.display = 'none';
 upBtn.style.display = 'none';
 
-async function fetchImages(name, page) {
+async function fetchMovies(query, page) {
   try {
     const response = await axios.get(
-      `https://pixabay.com/api/?key=23580980-4f75151f85975025bb6074227&q=${name}&image_type=photo&orientation=horizontal&safesearch=true&page=${page}&per_page=${perPage}`
+      `${BASE_URL}/search/movie?api_key=${API_KEY}&query=${query}&page=${page}`
     );
     console.log(response);
     return response.data;
@@ -32,22 +35,20 @@ async function eventHandler(ev) {
   clear(gallery);
   loadBtn.style.display = 'none';
   page = 1;
-  name = searchQuery.value;
-  console.log(name);
-  fetchImages(name, page)
-    .then(name => {
-      console.log(`Number of arrays: ${name.hits.length}`);
-      console.log(`Total hits: ${name.totalHits}`);
-      let totalPages = Math.ceil(name.totalHits / perPage);
+  query = searchQuery.value;
+  console.log(query);
+  fetchMovies(query, page)
+    .then(data => {
+      console.log(`Number of results: ${data.results.length}`);
+      console.log(`Total results: ${data.total_results}`);
+      let totalPages = Math.ceil(data.total_results / perPage);
       console.log(`Total pages: ${totalPages}`);
 
-      if (name.hits.length > 0) {
-        Notiflix.Notify.success(`Hooray! We found ${name.totalHits} images.`);
-        renderGallery(name);
+      if (data.results.length > 0) {
+        Notiflix.Notify.success(`Hooray! We found ${data.total_results} movies.`);
+        renderGallery(data.results);
         console.log(`Current page: ${page}`);
         lightbox();
-        //const lightbox = new SimpleLightbox('.gallery a', {});
-        //smooth scrool to up
         upBtn.style.display = 'block';
         upBtn.addEventListener('click', () => {
           searchingBox.scrollIntoView({
@@ -59,14 +60,14 @@ async function eventHandler(ev) {
           loadBtn.style.display = 'block';
         } else {
           loadBtn.style.display = 'none';
-          console.log('There are no more images');
+          console.log('There are no more movies');
           Notiflix.Notify.info(
             "We're sorry, but you've reached the end of search results."
           );
         }
       } else {
         Notiflix.Notify.failure(
-          'Sorry, there are no images matching your search query. Please try again.'
+          'Sorry, there are no movies matching your search query. Please try again.'
         );
         clear(gallery);
       }
@@ -76,26 +77,18 @@ async function eventHandler(ev) {
 
 searchForm.addEventListener('submit', eventHandler);
 
-function renderGallery(name) {
-  const markup = name.hits
-    .map(hit => {
-      return `<div class="photo-card">
-      <a class="gallery__item" href="${hit.largeImageURL}"> <img class="gallery__image" src="${hit.webformatURL}" alt="${hit.tags}" loading="lazy" /></a>
-      <div class="info">
-        <p class="info-item">
-          <p><b>Likes</b> <br>${hit.likes}</br></p>
-        </p>
-        <p class="info-item">
-          <p><b>Views</b> <br>${hit.views}</br></p>
-        </p>
-        <p class="info-item">
-          <p><b>Comments</b> <br>${hit.comments}</br></p>
-        </p>
-        <p class="info-item">
-          <p><b>Downloads</b> <br>${hit.downloads}</br></p>
-        </p>
-      </div>
-    </div>`;
+function renderGallery(results) {
+  const markup = results
+    .map(movie => {
+      return `<div class="movie-card">
+        <a class="gallery__item" href="#"><img class="gallery__image" src="https://image.tmdb.org/t/p/w500${movie.poster_path}" alt="${movie.title}" loading="lazy" /></a>
+        <div class="info">
+          <p class="info-item"><b>Title:</b> ${movie.title}</p>
+          <p class="info-item"><b>Release Date:</b> ${movie.release_date}</p>
+          <p class="info-item"><b>Overview:</b> ${movie.overview}</p>
+          <p class="info-item"><b>Popularity:</b> ${movie.popularity}</p>
+        </div>
+      </div>`;
     })
     .join('');
   gallery.insertAdjacentHTML('beforeend', markup);
@@ -104,13 +97,12 @@ function renderGallery(name) {
 loadBtn.addEventListener(
   'click',
   () => {
-    name = searchQuery.value;
-    console.log('load more images');
+    query = searchQuery.value;
+    console.log('load more movies');
     page += 1;
-    fetchImages(name, page).then(name => {
-      let totalPages = Math.ceil(name.totalHits / perPage);
-      renderGallery(name);
-      //smooth scroll
+    fetchMovies(query, page).then(data => {
+      let totalPages = Math.ceil(data.total_results / perPage);
+      renderGallery(data.results);
       const { height: cardHeight } = document
         .querySelector('.gallery')
         .firstElementChild.getBoundingClientRect();
@@ -119,13 +111,12 @@ loadBtn.addEventListener(
         top: cardHeight * 2,
         behavior: 'smooth',
       });
-      //===
       lightbox().refresh();
       console.log(`Current page: ${page}`);
 
       if (page >= totalPages) {
         loadBtn.style.display = 'none';
-        console.log('There are no more images');
+        console.log('There are no more movies');
         Notiflix.Notify.info(
           "We're sorry, but you've reached the end of search results."
         );
