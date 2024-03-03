@@ -1,0 +1,40 @@
+<header class="header__library">
+  <div class="header__container-library">
+    <div>
+      <svg class="header__icon" width="24" height="24">
+        <use href="/src/images/svg/symbol-defs.svg#icon-film"></use>
+        <!-- <use href="./images/svg/symbol-defs.svg#icon-film"></use> -->
+      </svg>
+      <a href="#" class="header__page-name"> Filmoteka</a>
+    </div>
+    <nav>
+      <ul class="header__list">
+        <li>
+          <a href="/src/index.html" class="header__items"> Home</a>
+        </li>
+        <li>
+          <a href="/src/library.html" class="header__items active">
+            My library</a
+          >
+        </li>
+      </ul>
+    </nav>
+  </div>
+
+  <ul class="library-header__buttons-list">
+    <li class="header__user-item">
+      <button name="watched" class="library-header__button" type="button">
+        Watched
+      </button>
+    </li>
+    <li class="header__user-item">
+      <button
+        name="queue"
+        class="library-header__button library-header__button--active"
+        type="button"
+      >
+        Queue
+      </button>
+    </li>
+  </ul>
+</header>
