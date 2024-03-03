@@ -4,7 +4,7 @@
     background-color: black;
     background-image: linear-gradient(to bottom,
     rgba(26, 26, 31, 0.5) 20%,
-    rgba(0, 0, 0, 0.56)90%),url(../images/header1.jpg);
+    rgba(0, 0, 0, 0.56)90%),url(/src/images/header1.jpg);
     background-size:cover;
     font-family: "Roboto", sans-serif; 
     height: 230px;
@@ -101,7 +101,7 @@ color: rgba(255, 255, 255, 1);
     .header {
         background-image: linear-gradient(to bottom,
         rgba(26, 26, 31, 0.5) 20%,
-        rgba(0, 0, 0, 0.56)90%),url(../images/header2.jpg);
+        rgba(0, 0, 0, 0.56)90%),url(/src/images/header2.jpg);
     }
 }
 
@@ -113,7 +113,7 @@ color: rgba(255, 255, 255, 1);
     .header {
         background-image: linear-gradient(to bottom,
         rgba(26, 26, 31, 0.5) 20%,
-        rgba(0, 0, 0, 0.56)90%),url(../images/header3.jpg);
+        rgba(0, 0, 0, 0.56)90%),url(/src/images/header3.jpg);
     }
 
     .header__page-name {
