@@ -6,7 +6,7 @@
       rgba(26, 26, 31, 0.5) 20%,
       rgba(0, 0, 0, 0.56) 90%
     ),
-    url(/src/images/header1.jpg);
+    url(../images/header1.jpg);
   background-size: cover;
   font-family: 'Roboto', sans-serif;
   height: 230px;
@@ -94,7 +94,7 @@
         rgba(26, 26, 31, 0.5) 20%,
         rgba(0, 0, 0, 0.56) 90%
       ),
-      url(/src/images/header2.jpg);
+      url(../images/header2.jpg);
   }
 }
 @media (max-width: 470px) {
@@ -107,7 +107,7 @@
         rgba(26, 26, 31, 0.5) 20%,
         rgba(0, 0, 0, 0.56) 90%
       ),
-      url(/src/images/header3.jpg);
+      url(../images/header3.jpg);
   }
   .header__page-name {
     display: none;
@@ -123,7 +123,7 @@
       rgba(26, 26, 31, 0.5) 20%,
       rgba(0, 0, 0, 0.56) 90%
     ),
-    url(/src/images/library-header.png);
+    url(../images/library-header.png);
   background-size: cover;
   background-position: center bottom;
   font-family: 'Roboto', sans-serif;
