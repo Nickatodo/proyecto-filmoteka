@@ -22,7 +22,7 @@ async function obtenerPeliculasPopulares() {
                 },
             });
             allMovies.push(...respuesta.data.results);
-            console.log(page)
+            //console.log(page)
         }
 
         // Mostrar las primeras 20 películas
@@ -40,8 +40,9 @@ function displayMovies(movies) {
     galleryDiv.innerHTML = ""; // Limpiar el contenido existente
     movies.forEach((movie) => {
         const movieDiv = document.createElement("li");
+        movieDiv.setAttribute("data-modal-open", "");
         movieDiv.classList.add("gallery__item");
-
+        
         const image = document.createElement("img");
         image.src = `https://image.tmdb.org/t/p/w400${movie.poster_path}`;
         image.alt = movie.title;
