@@ -1,15 +1,34 @@
 <!DOCTYPE html>
-<html lang="ru">
+<html lang="en">
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Page title</title>
-    <link rel="stylesheet" href="./sass/index.scss" />
-    <script type="module" src="./index.js"></script>
+    <link rel="stylesheet" href="./buttonCSS/button_watched.css" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&display=swap"
+      rel="stylesheet"
+    />
+    <title>watched-button</title>
   </head>
   <body>
-    <h1>Example title</h1>
-    <!-- ❗️❗️❗️ Add partials like so for every page -->
-    <include src="./partials/example.html"></include>
+    <div class="movie">
+      <h2>Title: Matrix: Reloaded</h2>
+      <!-- <div class="buttons-container"> -->
+      <button id="button-w" class="watched-button">Add to Watched</button>
+      <button id="button-q" class="addToQueue-button">add to queue</button>
+      <!-- </div> -->
+    </div>
+
+    <div class="movie">
+      <h2>Title: Inception</h2>
+      <!-- <div class="buttons-container"> -->
+      <button id="button-w" class="watched-button">Add to Watched</button>
+      <button id="button-q" class="addToQueue-button">add to queue</button>
+      <!-- </div> -->
+    </div>
+
+    <script type="module" src="./buttonjs/button_watched.js" defer></script>
   </body>
 </html>
