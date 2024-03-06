@@ -23,9 +23,7 @@ async function buscarPeliculasPorPalabraClave(palabraClave) {
                 },
             });
             allMoviesSearch = respuesta.data.results;
-            //console.log (page)
         }
-
         // Mostrar las primeras 20 películas
         displayMovies(allMoviesSearch.slice(0, 20));
         
@@ -42,12 +40,14 @@ function displayMovies(movies) {
         const movieDiv = document.createElement("li");
         movieDiv.setAttribute("data-modal-open", "");
         movieDiv.classList.add("gallery__item");
+        movieDiv.setAttribute("id", `${movie.id}`);
         
         const image = document.createElement("img");
         image.src = `https://image.tmdb.org/t/p/w400${movie.poster_path}`;
         image.alt = movie.title;
 
         const paragraph = document.createElement("p");
+        paragraph.classList.add("txtTitulo")
         paragraph.textContent = `${movie.title} (${movie.release_date.substring(0, 4)})`;
 
         movieDiv.appendChild(image);

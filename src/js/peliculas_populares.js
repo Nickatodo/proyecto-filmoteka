@@ -24,7 +24,6 @@ async function obtenerPeliculasPopulares() {
             allMovies.push(...respuesta.data.results);
             
         }
-        
         return allMovies;
         
     } catch (error) {
@@ -40,7 +39,7 @@ export function displayMovies(movies) {
         const movieDiv = document.createElement("li");
         movieDiv.setAttribute("data-modal-open", "");
         movieDiv.classList.add("gallery__item");
-        movieDiv.setAttribute("id", `${movie.id}`)
+        movieDiv.setAttribute("id", `${movie.id}`);
         
         const image = document.createElement("img");
         image.src = `https://image.tmdb.org/t/p/w400${movie.poster_path}`;

@@ -117,5 +117,5 @@ setTimeout(() => {
   renderPagination();
 
 
-}, 650);
+}, 200);
 
