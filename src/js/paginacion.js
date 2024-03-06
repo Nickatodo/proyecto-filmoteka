@@ -18,7 +18,6 @@ setTimeout(() => {
     currentData.forEach(item => {
     const div = document.createElement('div');
     div.textContent = item;
-    //dataContainer.appendChild(div);
     }); 
     return currentData;
   }
@@ -117,5 +116,5 @@ setTimeout(() => {
   renderPagination();
 
 
-}, 200);
+}, 250);
 

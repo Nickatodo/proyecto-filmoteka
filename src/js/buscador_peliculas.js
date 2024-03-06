@@ -61,5 +61,6 @@ const searchForm = document.getElementById("search-form");
 searchForm.addEventListener("submit", (event) => {
     event.preventDefault();
     const searchQuery = document.querySelector('input[name="searchQuery"]').value;
+    console.log(searchQuery);
     buscarPeliculasPorPalabraClave(searchQuery);
 });
