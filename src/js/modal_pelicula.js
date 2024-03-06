@@ -17,6 +17,6 @@
         refs.modal.classList.toggle("is-hidden");
     }
     
-    }, 777);
+    }, 800);
 
 })();

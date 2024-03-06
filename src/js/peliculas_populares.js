@@ -22,12 +22,9 @@ async function obtenerPeliculasPopulares() {
                 },
             });
             allMovies.push(...respuesta.data.results);
-            //console.log(page)
+            
         }
-
-        // Mostrar las primeras 20 películas
-        displayMovies(allMovies.slice(0, 20));
-        //displayMovies(renderData());
+        
         return allMovies;
         
     } catch (error) {
@@ -36,7 +33,7 @@ async function obtenerPeliculasPopulares() {
 }
 
 // Función para mostrar las películas
-function displayMovies(movies) {
+export function displayMovies(movies) {
     const galleryDiv = document.querySelector(".gallery");
     galleryDiv.innerHTML = ""; // Limpiar el contenido existente
     movies.forEach((movie) => {
@@ -60,6 +57,7 @@ function displayMovies(movies) {
     });
 
 }
+
 
 // Llamar a la función para obtener las películas populares
 obtenerPeliculasPopulares();

@@ -1,4 +1,5 @@
 import { allMov } from './peliculas_populares';
+import { displayMovies } from './peliculas_populares';
 
 setTimeout(() => {
   const data = [...allMov];// Tu conjunto de datos
@@ -19,6 +20,7 @@ setTimeout(() => {
     div.textContent = item;
     //dataContainer.appendChild(div);
     }); 
+    return currentData;
   }
   
   // Función para renderizar la paginación
@@ -104,6 +106,10 @@ setTimeout(() => {
       }
     });
     paginationContainer.appendChild(nextButton);
+
+      console.log(renderData());
+      displayMovies(renderData());
+
   }
 
   // Renderizar la primera página de datos y la paginación
@@ -111,6 +117,5 @@ setTimeout(() => {
   renderPagination();
 
 
-
-}, 1000);
+}, 650);
 
