@@ -107,7 +107,7 @@ setTimeout(() => {
     });
     paginationContainer.appendChild(nextButton);
 
-      console.log(renderData());
+      
       displayMovies(renderData());
 
   }
