@@ -1,6 +1,38 @@
-<div data-modal class="modal is-hidden">
-  <div class="modal__div">
-    <button data-modal-close class="modal__btn_cerrar"></button>
-    <p>YOUR ORDER</p>
+<div data-modal class="backdrop is-hidden">
+  <div class="modal">
+    <div class="modal__btn-close" data-modal-close>
+      <svg class="modal__btn-svg">
+        <use href="/src/images/svg/svg-icons.svg#icon-close"></use>
+      </svg>
+    </div>
+    <div class="modal_img"><img class="movie_img" /></div>
+    <div class="modal__information">
+      <h2 class="information__title">TITULO PELICULA</h2>
+      <div class="information__data">
+        <ul class="information__data-tittle">
+          <li>Vote / Votes</li>
+          <li>Popularity</li>
+          <li>Original Title</li>
+          <li>Genre</li>
+        </ul>
+        <ul class="information__data-values">
+          <li class="vote"></li>
+          <li class="popu"></li>
+          <li class="o_title"></li>
+          <li class="genre"></li>
+        </ul>
+      </div>
+      <p class="information__about-tittle">ABOUT</p>
+      <p class="information__about-text">
+        Lorem ipsum dolor sit, amet consectetur adipisicing elit. Dicta itaque
+        tenetur cumque voluptates laudantium rem laboriosam quis? Corrupti
+        repellendus dolorem quisquam explicabo dolore! Itaque beatae aperiam
+        fuga minima fugiat impedit.
+      </p>
+      <ul class="modal__action-buttons">
+        <button class="action-btn">ADD TO WATCHED</button>
+        <button class="action-btn">ADD TO QUEUE</button>
+      </ul>
+    </div>
   </div>
 </div>

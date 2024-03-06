@@ -22,12 +22,9 @@ async function obtenerPeliculasPopulares() {
                 },
             });
             allMovies.push(...respuesta.data.results);
-            //console.log(page)
+            
         }
-
-        // Mostrar las primeras 20 películas
-        displayMovies(allMovies.slice(0, 20));
-   
+        return allMovies;
         
     } catch (error) {
         console.error("Error al obtener las películas populares. Por favor, inténtalo de nuevo más tarde.");
@@ -35,27 +32,33 @@ async function obtenerPeliculasPopulares() {
 }
 
 // Función para mostrar las películas
-function displayMovies(movies) {
+export function displayMovies(movies) {
     const galleryDiv = document.querySelector(".gallery");
     galleryDiv.innerHTML = ""; // Limpiar el contenido existente
     movies.forEach((movie) => {
         const movieDiv = document.createElement("li");
         movieDiv.setAttribute("data-modal-open", "");
         movieDiv.classList.add("gallery__item");
+        movieDiv.setAttribute("id", `${movie.id}`);
         
         const image = document.createElement("img");
         image.src = `https://image.tmdb.org/t/p/w400${movie.poster_path}`;
         image.alt = movie.title;
 
         const paragraph = document.createElement("p");
+        paragraph.classList.add("txtTitulo")
         paragraph.textContent = `${movie.title} (${movie.release_date.substring(0, 4)})`;
 
         movieDiv.appendChild(image);
         movieDiv.appendChild(paragraph);
         galleryDiv.appendChild(movieDiv);
+        
     });
+
 }
 
 
 // Llamar a la función para obtener las películas populares
 obtenerPeliculasPopulares();
+
+export const allMov = allMovies;
