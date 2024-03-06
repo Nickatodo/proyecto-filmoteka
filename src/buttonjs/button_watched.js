@@ -52,6 +52,3 @@ function marcarComoFavorita(id) {
   localStorage.setItem('peliculasFavoritas', JSON.stringify(favoritas));
   // alert('Película marcada como favorita.');
 }
-
-try {
-} catch (error) {}
