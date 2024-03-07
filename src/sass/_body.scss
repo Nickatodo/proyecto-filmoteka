@@ -114,3 +114,13 @@
     box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); 
   }
   
+  .pagination-list {
+    display: flex; /* Utilizar flexbox */
+    list-style: none; /* Quitar los puntos de la lista */
+    padding: 0; /* Eliminar el espacio interior */
+    cursor: pointer;
+}
+
+.pagination li {
+    margin-right: 10px; /* Espacio entre los elementos de la lista */
+}

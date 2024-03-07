@@ -13,7 +13,7 @@ let allMovies = [];
 async function obtenerPeliculasPopulares() {
     try {
         // Obtener las primeras 5 páginas de películas populares
-        for (let page = 1; page <= 5; page++) {
+        for (let page = 1; page <= 10; page++) {
             const respuesta = await axios.get(`${BASE_URL}/movie/popular`, {
                 params: {
                     api_key: API_KEY,
@@ -33,7 +33,6 @@ async function obtenerPeliculasPopulares() {
         console.error("Error al obtener las películas populares. Por favor, inténtalo de nuevo más tarde.");
     }
 }
-
 // Función para mostrar las películas
 function displayMovies(movies) {
     const galleryDiv = document.querySelector(".gallery");
@@ -55,35 +54,68 @@ function displayMovies(movies) {
     });
 }
 
+// Obtener el div de paginación y los elementos de lista
+const paginationDiv = document.getElementById("pagination");
+const listItems = paginationDiv.querySelectorAll("li");
 
+// Agregar un evento de clic a cada elemento de lista
+listItems.forEach((item, index) => {
+    item.addEventListener("click", () => {
+        // Obtener las películas correspondientes a la página seleccionada (por ejemplo, página 1 -> películas 1-20)
+        const startIndex = index * 20;
+        const endIndex = startIndex + 20;
+        const moviesToShow = allMovies.slice(startIndex, endIndex);
 
-// Función para buscar películas por palabra clave
-async function buscarPeliculasPorPalabraClave(palabraClave) {
+        // Mostrar las películas
+        displayMovies(moviesToShow);
+    });
+});
+
+// Obtener el formulario de búsqueda y el botón
+const searchForm = document.getElementById("search-form");
+const searchInput = document.querySelector("input[name='searchQuery']");
+
+// Agregar un evento de envío al formulario de búsqueda
+searchForm.addEventListener("submit", async (event) => {
+    event.preventDefault(); // Evitar que se recargue la página
+
+    const keyword = searchInput.value.trim(); // Obtener la palabra clave ingresada
+
+    if (keyword) {
+        // Limpiar el arreglo de películas
+        allMovies = [];
+
+        // Obtener las películas relacionadas con la palabra clave
+        await obtenerPeliculasRelacionadas(keyword);
+
+        // Configurar la paginación
+        setupPagination();
+    }
+});
+
+// Función para obtener las películas relacionadas con la palabra clave
+async function obtenerPeliculasRelacionadas(keyword) {
     try {
         // Obtener las primeras 5 páginas de películas relacionadas con la palabra clave
-        for (let page = 1; page <= 5; page++) {
+        for (let page = 1; page <= 10; page++) {
             const respuesta = await axios.get(`${BASE_URL}/search/movie`, {
                 params: {
                     api_key: API_KEY,
                     language: "es-ES",
-                    query: palabraClave,
+                    query: keyword,
                     page: page,
                 },
             });
-            allMovies = respuesta.data.results;
-            console.log (page)
+            allMovies.push(...respuesta.data.results);
         }
 
         // Mostrar las primeras 20 películas
         displayMovies(allMovies.slice(0, 20));
-        
-     
 
     } catch (error) {
-        console.error("Error al buscar películas. Por favor, inténtalo de nuevo más tarde.");
+        console.error("Error al obtener las películas relacionadas con la palabra clave. Por favor, inténtalo de nuevo más tarde.");
     }
 }
-
 
 // Función para mostrar las películas
 function displayMovies(movies) {
@@ -106,15 +138,25 @@ function displayMovies(movies) {
     });
 }
 
+// Función para configurar la paginación
+function setupPagination() {
+    const paginationDiv = document.getElementById("pagination");
+    paginationDiv.innerHTML = ""; // Limpiar el contenido existente
 
+    // Crear elementos de lista para cada página
+    for (let page = 1; page <= 10; page++) {
+        const listItem = document.createElement("li");
+        listItem.textContent = page;
+        listItem.addEventListener("click", () => {
+            const startIndex = (page - 1) * 20;
+            const endIndex = startIndex + 20;
+            const moviesToShow = allMovies.slice(startIndex, endIndex);
+            displayMovies(moviesToShow);
+        });
+        paginationDiv.appendChild(listItem);
+    }
+}
 
-// Escuchar el evento de envío del formulario
-const searchForm = document.getElementById("search-form");
-searchForm.addEventListener("submit", (event) => {
-    event.preventDefault();
-    const searchQuery = document.querySelector('input[name="searchQuery"]').value;
-    buscarPeliculasPorPalabraClave(searchQuery);
-});
 
 // Llamar a la función para obtener las películas populares
 obtenerPeliculasPopulares();
