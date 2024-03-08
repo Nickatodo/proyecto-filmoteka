@@ -1,7 +1,7 @@
 import { allMov } from './peliculas_populares';
 import { displayMovies } from './peliculas_populares';
 
-setTimeout(() => {
+setTimeout(() =>{
   const data = [...allMov];// Tu conjunto de datos
   let itemsPerPage = 20; // Número de elementos por página
   let currentPage = 1; // Página actual

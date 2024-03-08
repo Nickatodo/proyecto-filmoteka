@@ -96,6 +96,12 @@ color: rgba(255, 255, 255, 1);
     background-color: transparent;
 }
 
+.txtError{
+    color: red;
+    display: flex;
+    justify-content: center;
+}
+
 
 @media (min-width: 471px) and (max-width:768px) {
     .header {

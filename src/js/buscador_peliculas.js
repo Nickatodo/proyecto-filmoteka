@@ -24,9 +24,9 @@ async function buscarPeliculasPorPalabraClave(palabraClave) {
             });
             allMoviesSearch = respuesta.data.results;
         }
+        console.log(allMoviesSearch);
         // Mostrar las primeras 20 películas
         displayMovies(allMoviesSearch.slice(0, 20));
-        
     } catch (error) {
         console.error("Error al buscar películas. Por favor, inténtalo de nuevo más tarde.");
     }
@@ -61,6 +61,5 @@ const searchForm = document.getElementById("search-form");
 searchForm.addEventListener("submit", (event) => {
     event.preventDefault();
     const searchQuery = document.querySelector('input[name="searchQuery"]').value;
-    console.log(searchQuery);
     buscarPeliculasPorPalabraClave(searchQuery);
 });

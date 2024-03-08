@@ -20,10 +20,13 @@ async function obtenerPeliculasPopulares() {
                     language: "es-ES",
                     page: page,
                 },
+
             });
+
             allMovies.push(...respuesta.data.results);
             
         }
+        
         return allMovies;
         
     } catch (error) {
