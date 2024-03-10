@@ -1,7 +1,5 @@
-import { allMov } from './peliculas_populares';
+export function llenarmodal(movies) { 
 
-setTimeout(() => {
-    
     const gallery = document.querySelector(".gallery");
 
     gallery.addEventListener("click", abriendo);
@@ -9,8 +7,11 @@ setTimeout(() => {
     function abriendo(e) {
         let movieId = e.target.parentElement.id;
 
-        allMov.forEach((movie) => { 
+        movies.forEach((movie) => { 
             if (movie.id == movieId) {
+
+                const movieId = document.querySelector(".information__id");
+                movieId.textContent = `${movie.id}`;
 
                 const movieImage = document.querySelector(".movie_img");
                 movieImage.src = `https://image.tmdb.org/t/p/w300${movie.poster_path}`;
@@ -36,7 +37,5 @@ setTimeout(() => {
 
             }
         });
-
     }
-
-}, 150);
+}

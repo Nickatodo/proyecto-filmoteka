@@ -1,6 +1,6 @@
-(() => {
+
+export function modales() {
     
-    setTimeout(() => {
         const refs = {
             openModalBtn: document.querySelectorAll("[data-modal-open]"),
             closeModalBtn: document.querySelector("[data-modal-close]"),
@@ -26,7 +26,13 @@
             refs.modal.classList.remove("animate__zoomIn");
         }
 
-    }, 250);
+/*
+    function toggleCerrar() { 
+        refs.modal.classList.add("is-hidden");
+    }
+    
 
+    refs.closeModalBtn.addEventListener("click",toggleCerrar);
+*/
+}
 
-})();
