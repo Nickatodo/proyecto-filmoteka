@@ -59,12 +59,12 @@ export function displayMovies(movies) {
     image.src = `https://image.tmdb.org/t/p/w400${movie.poster_path}`;
     image.alt = movie.title;
 
-    const paragraph = document.createElement("p");
-    paragraph.classList.add("txtTitulo");
+    const paragraph = document.createElement("h3");
+    paragraph.classList.add("movie-tittle");
     paragraph.textContent = `${movie.title}`;
 
     const paragraph2 = document.createElement("p");
-    paragraph2.classList.add("txtTitulo");
+    paragraph2.classList.add("movie-gender");
 
     for (const id in allGenres) {
       for (let i = 0; i < movie.genre_ids.length; i++) { 

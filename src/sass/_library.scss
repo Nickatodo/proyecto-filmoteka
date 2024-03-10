@@ -1,55 +1,59 @@
 .header__library {
-    background-color: black;
-    background-image: linear-gradient(to bottom,
-    rgba(26, 26, 31, 0.5) 20%,
-    rgba(0, 0, 0, 0.56)90%),url(/src/images/library-header.png);
-    background-size: cover; 
-    background-position: center bottom;
-    font-family: "Roboto", sans-serif; 
-    height: 230px;
+  background-color: black;
+  background-image: linear-gradient(
+      to bottom,
+      rgba(0, 0, 0, 0.56) 90%
+      rgba(26, 26, 31, 0.5) 20%,
+    ),
+    url(/src/images/library-header.png);
+  height: 230px;
+  background-size: cover;
+  background-position: center bottom;
+  font-family: 'Roboto', sans-serif;
 }
 
- .header__container-library  {
-        padding: 40px 70px 10px 70px;
-        display: flex;
-        justify-content: space-between;
-        align-items: center;
-        }
- 
+.header__container-library {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 40px 70px 10px 70px;
+}
 
 .library-header__button {
-    text-transform: uppercase;
-    font-size: 12px;
-    color: rgba(255, 255, 255, 1);
-    background: transparent;
-    border-radius: 5px;
-    border-color:  rgba(255, 255, 255, 1);
-    cursor: pointer; 
-    height: 44px; ;
-    width: 136px;
+  cursor: pointer;
+  background: transparent;
+  text-transform: uppercase;
+  height: 44px;
+  width: 136px;
+  font-size: 12px;
+  font-weight: 500;
+  border-radius: 5px;
+  color: rgba(255, 255, 255, 1);
+  border-color: rgba(255, 255, 255, 1);
+  transition: ease-in-out background-color 0.3s, border 0.5s, box-shadow 0.3s;
 
   &:hover,
   &:focus {
-      border: none;
-      background-color: rgba(255, 107, 1, 1);
-    }
+    border: none;
+    background-color: rgba(255, 107, 1, 1);
+    box-shadow: 0px 8px 43px 0px rgba(255, 107, 1, 0.6);
+  }
 }
 
-    .library-header__buttons-list {
-        display: flex;
-        justify-content: center;
-        list-style: none;
-        gap: 15px;
-        margin-bottom: 20px;
-    }
-    
-  
-    @media (max-width: 470px) {
-        .header__container-library  {
-            padding: 40px 50px 30px 50px;
-        }
+.library-header__buttons-list {
+  display: flex;
+  justify-content: center;
+  list-style: none;
+  gap: 15px;
+  margin-bottom: 20px;
+}
 
-        .library-header__buttons-list {
-            padding: 0;
-        }
-    }
+@media (max-width: 470px) {
+  .header__container-library {
+    padding: 40px 50px 30px 50px;
+  }
+
+  .library-header__buttons-list {
+    padding: 0;
+  }
+}
