@@ -10,9 +10,20 @@ const API_KEY = "7ee5fc24ca1969f8996327675779dab1";
 // URL base para la API de themoviedb.org
 const BASE_URL = "https://api.themoviedb.org/3";
 
+
+
 // Arreglo para almacenar todas las películas
 let allMovies = [];
 let allGenres = [];
+
+
+// Espera a que la página se cargue completamente
+window.addEventListener("load", function() {
+  // Oculta el spinner después de 4 segundos
+  setTimeout(function() {
+      document.getElementById("loader").style.display = "none";
+  }, 3000); // 4000 ms = 4 segundos
+});
 
 // Función para obtener las películas más populares
 export async function obtenerPeliculasPopulares() {

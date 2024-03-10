@@ -4,6 +4,14 @@ let generos = [];
 let queue = [];
 let pelisparaver = [];
 
+// Espera a que la página se cargue completamente
+window.addEventListener("load", function() {
+    // Oculta el spinner después de 4 segundos
+    setTimeout(function() {
+        document.getElementById("loader").style.display = "none";
+    }, 3000); // 4000 ms = 4 segundos
+});
+
 // SE RECUPERAN LOS GENEROS
 if (localStorage.getItem('generos')) {
     generos = JSON.parse(localStorage.getItem('generos'));
@@ -30,6 +38,8 @@ if (localStorage.getItem('peliculas')) {
 } else {
     console.log('El dato no existe en localStorage.');
 }
+
+
 
 // PARA PELICULAS POR VER
 if (localStorage.getItem('queue')) {
