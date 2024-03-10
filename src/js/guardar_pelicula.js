@@ -5,20 +5,10 @@ const watchedButtons = document.querySelectorAll('.watched-button');
 watchedButtons.forEach(button => { 
   button.addEventListener('click', function () {
     const movieId = document.querySelector(".information__id").innerText;
-    const movieTitle = document.querySelector(".information__title").innerText;  
-    const movieImg = document.querySelector(".movie_img").src;
-        markAsWatched(); // Llama a markAsWatched con el titulo de la pelicula
-        this.disabled = true; //Deshabilita el boton para evitar mas clicks
-        this.classList.add('clicked');
-        marcarComoFavorita(movieId,movieTitle,movieImg);
-    });
+    marcarComoVista(movieId);
+  });
 });
 
-// Funcion para marcar como Watched
-function markAsWatched(title) {
-  console.log(`Marked "${title}" as watched`);
-  // Aqui entonces envía al server como Watched
-}
 
 // Para seleccionar todos los botones con clase 'watched-button'
 const addToQueueButtons = document.querySelectorAll('.addToQueue-button');
@@ -27,34 +17,28 @@ const addToQueueButtons = document.querySelectorAll('.addToQueue-button');
 addToQueueButtons.forEach(button => {
   button.addEventListener('click', function () {
     const movieId = document.querySelector(".information__id").innerText;
-    const movieTitle = document.querySelector(".information__title").innerText;
-    const movieImg = document.querySelector(".movie_img").innerText;
-
-      
-      addToQueue(movieTitle); // Llama a markAsWatched con el titulo de la pelicula
-      this.disabled = true; //Deshabilita el boton para evitar mas clicks
-      this.classList.add('clicked');
+    marcarParaVer(movieId);
     });
 });
 
-// Funcion para marcar como Watched
-function addToQueue(title) {
-  console.log(`Marked "${title}" as added to queue`);
-  // Aqui entonces envía al server como Watched
+function marcarComoVista(id) {
+  let watched = JSON.parse(localStorage.getItem('watched')) || [];
+  // Verificar si la película ya está marcada como favorita
+  if (watched.includes(id)) {
+    alert('Esta película ya está marcada como vista.');
+    return;
+   }
+  watched.push(id);
+  localStorage.setItem('watched', JSON.stringify(watched));
 }
 
-function marcarComoFavorita(id,title,img) {
-  let favoritas = JSON.parse(localStorage.getItem('peliculasFavoritas')) || [];
-
+function marcarParaVer(id) {
+  let queue = JSON.parse(localStorage.getItem('queue')) || [];
   // Verificar si la película ya está marcada como favorita
-  if (favoritas.includes(id)) {
-     alert('Esta película ya está marcada como favorita.');
-     return;
+  if (queue.includes(id)) {
+    alert('Esta película ya está marcada como para ver.');
+    return;
    }
-
-  dattos = [id, title, img];
-  console.log(dattos);
-  favoritas.push(dattos);
-  localStorage.setItem('peliculasFavoritas', JSON.stringify(favoritas));
-  // alert('Película marcada como favorita.');
+  queue.push(id);
+  localStorage.setItem('queue', JSON.stringify(queue));
 }

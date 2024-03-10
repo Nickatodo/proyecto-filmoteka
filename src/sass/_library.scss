@@ -40,6 +40,12 @@
   }
 }
 
+.button_selected{
+  border: none;
+  background-color: rgba(255, 107, 1, 1);
+  box-shadow: 0px 8px 43px 0px rgba(255, 107, 1, 0.6);
+}
+
 .library-header__buttons-list {
   display: flex;
   justify-content: center;

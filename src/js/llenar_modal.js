@@ -1,4 +1,4 @@
-export function llenarmodal(movies) { 
+export function llenarmodal(movies,genres) { 
 
     const gallery = document.querySelector(".gallery");
 
@@ -30,7 +30,14 @@ export function llenarmodal(movies) {
                 movieO_title.textContent = `${movie.original_title}`;
                 
                 const movieGenre = document.querySelector(".genre");
-                movieGenre.textContent = `${movie.genre_ids}`;
+                movie.genre_ids.forEach((genreId) => { 
+                    for (let i = 0; i < genres.length; i++) {
+                        if (genreId == genres[i].id) {
+                            movieGenre.append(genres[i].name + " ");   
+                            
+                        }      
+                    }
+                });
                 
                 const movieAbout = document.querySelector(".information__about-text");
                 movieAbout.textContent = `${movie.overview}`;

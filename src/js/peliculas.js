@@ -18,7 +18,8 @@ let allGenres = [];
 export async function obtenerPeliculasPopulares() {
   try {
     // Obtener las primeras 5 páginas de películas populares
-    for (let page = 1; page <= 10; page++) {
+    
+    for (let page = 1; page <= 350; page++) {
       const respuesta = await axios.get(`${BASE_URL}/movie/popular`, {
         params: {
           api_key: API_KEY,
@@ -27,7 +28,6 @@ export async function obtenerPeliculasPopulares() {
         },
       });
       allMovies.push(...respuesta.data.results);
-      
     }
 
     const dataGenres = await axios.get(`${BASE_URL}/genre/movie/list`, {
@@ -36,8 +36,10 @@ export async function obtenerPeliculasPopulares() {
         language: "es-ES",
       },
     });
+  
     allGenres.push(...dataGenres.data.genres);
-
+    localStorage.setItem('peliculas', JSON.stringify(allMovies));
+    localStorage.setItem('generos', JSON.stringify(allGenres));
     hacerPaginacion(allMovies);
 
   } catch (error) {
@@ -83,7 +85,7 @@ export function displayMovies(movies) {
   });
 
   modales();
-  llenarmodal(movies);
+  llenarmodal(movies,allGenres);
 
 }
 
@@ -103,9 +105,6 @@ searchForm.addEventListener("submit", async (event) => {
 
         // Obtener las películas relacionadas con la palabra clave
         await obtenerPeliculasRelacionadas(keyword);
-
-        // Configurar la paginación
-        //setupPagination();
     }
 });
 
@@ -125,9 +124,6 @@ async function obtenerPeliculasRelacionadas(keyword) {
             allMovies.push(...respuesta.data.results);
         }
 
-        // Mostrar las primeras 20 películas
-        //displayMovies(allMovies.slice(0, 20));
-        //return allMovies;
       
       const datos = [...allMovies];// Tu conjunto de datos
       if (datos.length === 0) { 
