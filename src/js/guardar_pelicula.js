@@ -1,3 +1,5 @@
+import Notiflix from 'notiflix';
+
 // Para seleccionar todos los botones con clase 'watched-button'
 const watchedButtons = document.querySelectorAll('.watched-button');
 
@@ -25,20 +27,22 @@ function marcarComoVista(id) {
   let watched = JSON.parse(localStorage.getItem('watched')) || [];
   // Verificar si la película ya está marcada como favorita
   if (watched.includes(id)) {
-    alert('Esta película ya está marcada como vista.');
+    Notiflix.Notify.warning('Esta pelicula ya ha sido guardada como vista.');
     return;
    }
   watched.push(id);
   localStorage.setItem('watched', JSON.stringify(watched));
+  Notiflix.Notify.success("Pelicula guardada como vista.");
 }
 
 function marcarParaVer(id) {
   let queue = JSON.parse(localStorage.getItem('queue')) || [];
   // Verificar si la película ya está marcada como favorita
   if (queue.includes(id)) {
-    alert('Esta película ya está marcada como para ver.');
+    Notiflix.Notify.warning('Esta pelicula ya ha sido guardada para ver mas tarde.');
     return;
    }
   queue.push(id);
   localStorage.setItem('queue', JSON.stringify(queue));
+  Notiflix.Notify.success("Pelicula guardada para ver mas tarde.");
 }
