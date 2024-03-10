@@ -67,7 +67,17 @@
               0px 4px 4px 0px rgba(0, 0, 0, 0.06), 0px 1px 1px 0px rgba(0, 0, 0, 0.12);
       }
   }
-  
+  .movie-tittle {
+    text-transform: uppercase;
+    font-size: 12px;
+    line-height: calc(16/12);
+  }
+  .movie-gender{
+    font-size: 12px;
+    font-weight: 500;
+    line-height: calc(14.06/12);
+    color: rgba(255, 107, 8, 1);
+  }
   .gallery__image:hover {
     transform: scale(1.03);
   }
