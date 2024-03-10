@@ -1,10 +1,14 @@
-#pagination-container {
+#pagination {
   display: flex;
-  justify-content: space-between;
+  justify-content: center; /* Centrar horizontalmente */
+}
+
+#pagination-container {
+  align-self: center;
+  display: flex;
   align-items: center;
-  width: 374px;
-  padding-left: 603px;
-  padding-right: 603px;
+  width: 100%; /* Ancho completo */
+  width: 374px; /* Máximo ancho deseado */
   margin-top: 40px;
   margin-bottom: 40px;
 }
@@ -34,4 +38,9 @@
 .current-page {
   background-color: rgb(255, 107, 8);
   color: rgb(255, 255, 255);
+}
+@media screen and (max-width: 768px) {
+  #pagination-container {
+    width: 278px; /* Cambia el ancho a 278px en pantallas móviles */
+  }
 }
