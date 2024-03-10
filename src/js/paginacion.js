@@ -43,6 +43,10 @@ export function hacerPaginacion(allMovies) {
     const firstButton = document.createElement('button');
     firstButton.textContent = '1';
     firstButton.classList.add('pagination-button');
+    if (1 === currentPage) {
+      // identifica primera pagina y la marca de naranja
+      firstButton.classList.add('current-page');
+    }
     firstButton.addEventListener('click', () => {
       currentPage = 1;
       renderData();
@@ -85,6 +89,10 @@ export function hacerPaginacion(allMovies) {
       const lastButton = document.createElement('button');
       lastButton.textContent = totalPages;
       lastButton.classList.add('pagination-button');
+      if (totalPages === currentPage) {
+        // identifica ultima pagina y la deja en naranja
+        lastButton.classList.add('current-page');
+      }
       lastButton.addEventListener('click', () => {
         currentPage = totalPages;
         renderData();
