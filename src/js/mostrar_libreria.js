@@ -1,8 +1,20 @@
+import { hacerPaginacion } from "./paginacion_library";
+import { modales } from "./modal_pelicula";
+import { llenarmodal } from "./llenar_modal";
+
 let watched = [];
 let pelisvistas = [];
 let generos = [];
 let queue = [];
 let pelisparaver = [];
+
+// Espera a que la página se cargue completamente
+window.addEventListener("load", function() {
+    // Oculta el spinner después de 4 segundos
+    setTimeout(function() {
+        document.getElementById("loader").style.display = "none";
+    }, 3000); // 4000 ms = 4 segundos
+});
 
 // SE RECUPERAN LOS GENEROS
 if (localStorage.getItem('generos')) {
@@ -51,7 +63,7 @@ if (localStorage.getItem('peliculas')) {
     console.log('El dato no existe en localStorage.');
 }
 
-function displayMovies(movies) {
+export function displayMovies(movies) {
     const galleryDiv = document.querySelector(".gallery");
     galleryDiv.innerHTML = ""; // Limpiar el contenido existente
     movies.forEach((movie) => {
@@ -86,16 +98,20 @@ function displayMovies(movies) {
         movieDiv.appendChild(paragraph2);
         galleryDiv.appendChild(movieDiv);
     });
+
+    modales();
+    llenarmodal(movies,generos);
 }
 
-displayMovies(pelisvistas);
+hacerPaginacion(pelisvistas);
+
+//displayMovies(pelisvistas);
 
 const btnwatched = document.getElementById("watched");
 const btnqueue = document.getElementById("queue");
 
 btnwatched.addEventListener("click", async (event) => {
     event.preventDefault(); // Evitar que se recargue la página
-
     displayMovies(pelisvistas);
     btnwatched.classList.toggle("button_selected");
     btnqueue.classList.toggle("button_selected");
@@ -103,7 +119,6 @@ btnwatched.addEventListener("click", async (event) => {
 
 btnqueue.addEventListener("click", async (event) => {
     event.preventDefault(); // Evitar que se recargue la página
-
     displayMovies(pelisparaver);
     btnwatched.classList.toggle("button_selected");
     btnqueue.classList.toggle("button_selected");

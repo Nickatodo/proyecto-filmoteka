@@ -30,14 +30,15 @@ export function llenarmodal(movies,genres) {
                 movieO_title.textContent = `${movie.original_title}`;
                 
                 const movieGenre = document.querySelector(".genre");
+                let texto = "";
                 movie.genre_ids.forEach((genreId) => { 
                     for (let i = 0; i < genres.length; i++) {
                         if (genreId == genres[i].id) {
-                            movieGenre.append(genres[i].name + " ");   
-                            
+                            texto = texto+`${genres[i].name} `;
                         }      
                     }
                 });
+                movieGenre.textContent = texto;
                 
                 const movieAbout = document.querySelector(".information__about-text");
                 movieAbout.textContent = `${movie.overview}`;

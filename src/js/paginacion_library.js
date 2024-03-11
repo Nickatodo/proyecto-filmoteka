@@ -1,4 +1,4 @@
-import { displayMovies } from "./peliculas";
+import { displayMovies } from "./mostrar_libreria";
 
 export function hacerPaginacion(allMovies) { 
 
@@ -74,6 +74,8 @@ export function hacerPaginacion(allMovies) {
     });
       paginationContainer.appendChild(button);
     }
+
+    
 
     if (currentPage < totalPages - 2) {
       const ellipsis2 = document.createElement('span');

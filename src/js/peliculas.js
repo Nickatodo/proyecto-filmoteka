@@ -14,10 +14,17 @@ const BASE_URL = "https://api.themoviedb.org/3";
 let allMovies = [];
 let allGenres = [];
 
+// Espera a que la página se cargue completamente
+window.addEventListener("load", function() {
+  // Oculta el spinner después de 4 segundos
+  setTimeout(function() {
+    document.getElementById("loader").style.display = "none";
+  }, 3000); // 4000 ms = 4 segundos
+});
+
 // Función para obtener las películas más populares
 export async function obtenerPeliculasPopulares() {
   try {
-    // Obtener las primeras 5 páginas de películas populares
     
     for (let page = 1; page <= 350; page++) {
       const respuesta = await axios.get(`${BASE_URL}/movie/popular`, {
@@ -82,6 +89,7 @@ export function displayMovies(movies) {
     movieDiv.appendChild(paragraph);
     movieDiv.appendChild(paragraph2);
     galleryDiv.appendChild(movieDiv);
+
   });
 
   modales();
@@ -96,40 +104,36 @@ const searchInput = document.querySelector("input[name='searchQuery']");
 // Agregar un evento de envío al formulario de búsqueda
 searchForm.addEventListener("submit", async (event) => {
     event.preventDefault(); // Evitar que se recargue la página
-
     const keyword = searchInput.value.trim(); // Obtener la palabra clave ingresada
-
     if (keyword) {
-        // Limpiar el arreglo de películas
-        allMovies = [];
-
-        // Obtener las películas relacionadas con la palabra clave
-        await obtenerPeliculasRelacionadas(keyword);
+      // Limpiar el arreglo de películas
+      allMovies = [];
+      // Obtener las películas relacionadas con la palabra clave
+      await obtenerPeliculasRelacionadas(keyword);
     }
 });
 
 // Función para obtener las películas relacionadas con la palabra clave
 async function obtenerPeliculasRelacionadas(keyword) {
-    try {
-        // Obtener las primeras 5 páginas de películas relacionadas con la palabra clave
-        for (let page = 1; page <= 10; page++) {
-            const respuesta = await axios.get(`${BASE_URL}/search/movie`, {
-                params: {
-                    api_key: API_KEY,
-                    language: "es-ES",
-                    query: keyword,
-                    page: page,
-                },
-            });
-            allMovies.push(...respuesta.data.results);
-        }
+  try {
+    // Obtener las primeras 5 páginas de películas relacionadas con la palabra clave
+    for (let page = 1; page <= 10; page++) {
+      const respuesta = await axios.get(`${BASE_URL}/search/movie`, {
+          params: {
+            api_key: API_KEY,
+            language: "es-ES",
+            query: keyword,
+            page: page,
+          },
+      });
+      allMovies.push(...respuesta.data.results);
+    }
 
-      
-      const datos = [...allMovies];// Tu conjunto de datos
-      if (datos.length === 0) { 
-        throw new Error("erferv");
-      }
-      hacerPaginacion(datos);
+    const datos = [...allMovies];// Tu conjunto de datos
+    if (datos.length === 0) { 
+      throw new Error("erferv");
+    }
+    hacerPaginacion(datos);
 
   } catch (error) {
 
@@ -139,9 +143,7 @@ async function obtenerPeliculasRelacionadas(keyword) {
       errorDiv.classList.add("txtError");
       const errorTxt = document.createElement("p");
       errorTxt.textContent = "Search result not successful. Enter the correct movie name.";
-      
-      errorDiv.appendChild(errorTxt);
-        
+      errorDiv.appendChild(errorTxt);        
     }
   }
 }
