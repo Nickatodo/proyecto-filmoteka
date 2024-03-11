@@ -105,8 +105,6 @@ export function displayMovies(movies) {
 
 hacerPaginacion(pelisvistas);
 
-//displayMovies(pelisvistas);
-
 const btnwatched = document.getElementById("watched");
 const btnqueue = document.getElementById("queue");
 
