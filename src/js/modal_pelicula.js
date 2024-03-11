@@ -15,6 +15,18 @@ export function modales() {
     refs.closeModalBtn.addEventListener("click", toggleCerrar);
     refs.closeModalBtn.addEventListener("click", removeAnimation);
     
+    document.addEventListener("click", event => {
+        if (event.target === refs.modal) {
+            toggleCerrar();
+        }
+    });
+
+    document.addEventListener("keydown", event => { 
+        if (event.key === "Escape") {
+            toggleCerrar();
+        }
+    });
+
     function startAnimation(){
         refs.modal.classList.add("animate__zoomIn")
     }

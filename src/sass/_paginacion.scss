@@ -35,3 +35,12 @@
   background-color: rgb(255, 107, 8);
   color: rgb(255, 255, 255);
 }
+
+// Responsive Styles to tablet device
+@media (min-width: 471px) and (max-width:768px) {
+  #pagination-container {
+    padding: 20px 50px 20px 50px;
+    margin-top: 20px;
+    margin-bottom: 20px;
+  }
+}

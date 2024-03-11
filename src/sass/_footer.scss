@@ -41,7 +41,7 @@
 }
 
 // Responsive Styles to tablet device
-@media (max-width: 768px) {
+@media (min-width: 471px) and (max-width:768px) {
   .container {
     width: 100vh;
   }
@@ -65,7 +65,7 @@
   }
 }
 // Responsive Styles to mobile device
-@media (max-width: 320px) {
+@media (max-width: 470px) {
   .footer {
     flex-direction: column;
 
