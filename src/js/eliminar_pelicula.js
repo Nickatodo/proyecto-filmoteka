@@ -7,7 +7,7 @@ const watchedButtons = document.querySelectorAll('.watched-button');
 watchedButtons.forEach(button => { 
   button.addEventListener('click', function () {
     const movieId = document.querySelector(".information__id").innerText;
-    marcarComoVista(movieId);
+    eliminarComoVista(movieId);
   });
 });
 
@@ -19,40 +19,28 @@ const addToQueueButtons = document.querySelectorAll('.addToQueue-button');
 addToQueueButtons.forEach(button => {
   button.addEventListener('click', function () {
     const movieId = document.querySelector(".information__id").innerText;
-    marcarParaVer(movieId);
+    eliminarParaVer(movieId);
     });
 });
 
-function marcarComoVista(id) {
+function eliminarComoVista(id) {
   let watched = JSON.parse(localStorage.getItem('watched')) || [];
-  let queue = JSON.parse(localStorage.getItem('queue')) || [];
   // Verificar si la película ya está marcada como favorita
   if (watched.includes(id)) {
-    Notiflix.Notify.warning('Esta pelicula ya ha sido guardada como vista.');
-    return;
+    let num = watched.indexOf(id);
+    watched.splice(num, 1);
+    localStorage.setItem('watched', JSON.stringify(watched));
+    Notiflix.Notify.success("Pelicula eliminada en vistas.");
   }
-  if (queue.includes(id)) {
-    Notiflix.Notify.warning('Esta pelicula ya ha sido guardada para ver mas tarde.');
-    return;
-  }
-  watched.push(id);
-  localStorage.setItem('watched', JSON.stringify(watched));
-  Notiflix.Notify.success("Pelicula guardada como vista.");
 }
 
-function marcarParaVer(id) {
+function eliminarParaVer(id) {
   let queue = JSON.parse(localStorage.getItem('queue')) || [];
-  let watched = JSON.parse(localStorage.getItem('watched')) || [];
   // Verificar si la película ya está marcada como favorita
   if (queue.includes(id)) {
-    Notiflix.Notify.warning('Esta pelicula ya ha sido guardada para ver mas tarde.');
-    return;
+    let num = queue.indexOf(id);
+    queue.splice(num, 1);
+    localStorage.setItem('queue', JSON.stringify(queue));
+    Notiflix.Notify.success("Pelicula eliminada para ver mas tarde.");
   }
-  if (watched.includes(id)) {
-    Notiflix.Notify.warning('Esta pelicula ya ha sido guardada como vista.');
-    return;
-  }
-  queue.push(id);
-  localStorage.setItem('queue', JSON.stringify(queue));
-  Notiflix.Notify.success("Pelicula guardada para ver mas tarde.");
 }

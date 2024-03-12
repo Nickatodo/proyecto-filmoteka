@@ -1,11 +1,6 @@
-import { displayMovies } from './peliculas';
+import { displayMovies } from "./mostrar_libreria";
 
-export function hacerPaginacion(allMovies) {
-  const data = [...allMovies]; // Tu conjunto de datos
-  let itemsPerPage = 20; // Número de elementos por página
-  let currentPage = 1; // Página actual
-  const visiblePages = 3; // Número de botones de paginación visibles
-
+export function hacerPaginacion(allMovies) { 
 
   const data = [...allMovies];// Tu conjunto de datos
   let itemsPerPage = 20; // Número de elementos por página
@@ -80,6 +75,8 @@ export function hacerPaginacion(allMovies) {
       paginationContainer.appendChild(button);
     }
 
+    
+
     if (currentPage < totalPages - 2) {
       const ellipsis2 = document.createElement('span');
       ellipsis2.textContent = '...';
@@ -118,4 +115,3 @@ export function hacerPaginacion(allMovies) {
   renderData();
   renderPagination();
 }
-

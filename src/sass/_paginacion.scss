@@ -6,23 +6,31 @@
 #pagination-container {
   align-self: center;
   display: flex;
+<<<<<<< HEAD
   align-items: center;
   width: 100%; /* Ancho completo */
   width: 374px; /* Máximo ancho deseado */
+=======
+  justify-content: space-around;
+  align-items: center;
+  padding-left: 603px;
+  padding-right: 603px;
+>>>>>>> 1371966fd0c35a1089b3084de0022e39e01a7894
   margin-top: 40px;
   margin-bottom: 40px;
+  gap: 10px;
 }
 
 .pagination-button {
-  margin: 0 5px;
-  padding: 5px 10px;
-  background-color: rgb(255, 255, 255);
-  color: rgb(0, 0, 0);
   border: none;
-  border-radius: 5px;
   cursor: pointer;
+  padding: 0;
   width: 40px;
+  margin: 0 0;
   height: 40px;
+  border-radius: 5px;
+  color: rgb(0, 0, 0);
+  background-color: rgb(255, 255, 255);
 }
 
 .pagination-button:active:focus:hover {
@@ -39,8 +47,14 @@
   background-color: rgb(255, 107, 8);
   color: rgb(255, 255, 255);
 }
-@media screen and (max-width: 768px) {
+
+
+// Responsive Styles to tablet device
+@media (min-width: 471px) and (max-width:768px) {
   #pagination-container {
-    width: 278px; /* Cambia el ancho a 278px en pantallas móviles */
+    padding: 20px 50px 20px 50px;
+    margin-top: 20px;
+    margin-bottom: 20px;
   }
 }
+
